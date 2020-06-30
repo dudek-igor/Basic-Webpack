@@ -90,11 +90,17 @@ const settings = {
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       title: "Nowa Aplikacja",
-      template: 'source/templates/template.html'
+      template: 'source/templates/template.html',
+      minify:{
+        collapseWhitespace: true,
+      }
     }),
     // new HtmlWebpackPlugin({
     //   title: "Nowa Podstrona",
-    //   filename: "podstrona.html"
+    //   filename: "podstrona.html",
+    // minify:{
+    //   collapseWhitespace: true,
+    // }
     // }),
     new MiniCssExtractPlugin({
       filename: '[contenthash:4].[name]-style.css',
