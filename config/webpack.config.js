@@ -72,6 +72,7 @@ const settings = {
     open: true,
     port: 5001,
     host: 'localhost',
+    hot: true,
     contentBase: path.resolve(__dirname,'../','public'),
   }
 }

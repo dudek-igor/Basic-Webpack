@@ -14,5 +14,3 @@ const e2 = new Creator();
 e2.addBgc('blue');
 const e3 = new Creator();
 e3.addBgc();
-
-var set = new Set([1, 2, 3]);

@@ -29,13 +29,25 @@ const settings = {
           {
             loader: MiniCssExtractPlugin.loader,
           },
-          'css-loader'
+          'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: [require('autoprefixer')]
+            }
+          }
         ]
       },
       {
         test: /\.(sass|scss)$/,
         use: [MiniCssExtractPlugin.loader,
           'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: [require('autoprefixer')]
+            }
+          },
           'sass-loader'
         ]
       },
