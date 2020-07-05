@@ -12,7 +12,7 @@ const settings = {
     index: './source/index.js',
   },
   output: {
-    filename: 'js/[contenthash:4].[name]-bundle.js',
+    filename: 'js/[hash].[name]-bundle.js',
     path: path.resolve(__dirname, '../','build')
   },
   module: {
