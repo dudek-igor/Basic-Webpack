@@ -2,7 +2,7 @@
 const path = require('path');
 
 // Plugins
-const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
@@ -11,11 +11,11 @@ const CopyPlugin = require('copy-webpack-plugin');
 const settings = {
   mode: 'production',
   entry: {
-    index: './source/index.js',
+    index: './index.js',
   },
   output: {
     filename: 'js/[contenthash:4].[name]-bundle.js',
-    path: path.resolve(__dirname, '../','build')
+    path: path.resolve(__dirname, '../', 'build'),
   },
   module: {
     rules: [
@@ -33,46 +33,46 @@ const settings = {
           {
             loader: 'postcss-loader',
             options: {
-              plugins: [require('autoprefixer')]
-            }
-          }
-        ]
+              plugins: [require('autoprefixer')],
+            },
+          },
+        ],
       },
       {
         test: /\.(sass|scss)$/,
-        use: [MiniCssExtractPlugin.loader,
+        use: [
+          MiniCssExtractPlugin.loader,
           'css-loader',
           {
             loader: 'postcss-loader',
             options: {
-              plugins: [require('autoprefixer')]
-            }
+              plugins: [require('autoprefixer')],
+            },
           },
-          'sass-loader'
-        ]
+          'sass-loader',
+        ],
       },
       {
         test: /\.(jpg|png|svg|gif|jpeg)$/,
-        use: 
-        [
+        use: [
           {
             loader: 'file-loader',
             options: {
               name: '[name]-[contenthash:6].[ext]',
               outputPath: 'images',
               // publicPath: '../images'
-            }
-          }, 
+            },
+          },
           {
             loader: 'image-webpack-loader',
-              options: {
-                mozjpeg: {
+            options: {
+              mozjpeg: {
                 quality: 70,
-                progressive: true //false
-              }
-            }
-          }
-        ]
+                progressive: true, //false
+              },
+            },
+          },
+        ],
       },
       {
         test: /\.(js|ts)$/,
@@ -82,30 +82,29 @@ const settings = {
           loader: 'babel-loader',
           options: {
             presets: [
-              ['@babel/preset-env', 
+              [
+                '@babel/preset-env',
                 {
-                  useBuiltIns: 'usage', 
-                  corejs: '2.0.0'
-                }
+                  useBuiltIns: 'usage',
+                  corejs: '2.0.0',
+                },
               ],
-              "@babel/preset-typescript"
+              '@babel/preset-typescript',
             ],
-            plugins: [
-              "@babel/plugin-proposal-class-properties",
-            ]
-          }
-        }
+            plugins: ['@babel/plugin-proposal-class-properties'],
+          },
+        },
       },
-    ]
+    ],
   },
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      title: "Nowa Aplikacja",
+      title: 'Nowa Aplikacja',
       template: 'source/templates/template.html',
-      minify:{
+      minify: {
         collapseWhitespace: true,
-      }
+      },
     }),
     // new HtmlWebpackPlugin({
     //   title: "Nowa Podstrona",
@@ -120,17 +119,17 @@ const settings = {
     new CopyPlugin({
       patterns: [
         {
-        from: "public/images",
-        to: 'images'
+          from: 'public/images',
+          to: 'images',
         },
         // {
         // from: "public/videos",
         // to: 'videos'
         // }
-      ]
-    })
+      ],
+    }),
   ],
-}
+};
 
 //Export
 module.exports = settings;

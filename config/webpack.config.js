@@ -2,18 +2,18 @@
 const path = require('path');
 
 // Plugins
-const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 // Settings
 const settings = {
   mode: 'development',
   entry: {
-    index: './source/index.js',
+    index: './index.js',
   },
   output: {
     filename: 'js/[hash].[name]-bundle.js',
-    path: path.resolve(__dirname, '../','build')
+    path: path.resolve(__dirname, '../', 'build'),
   },
   module: {
     rules: [
@@ -23,15 +23,15 @@ const settings = {
       },
       {
         test: /\.css$/,
-        use: ['style-loader','css-loader'],
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.(sass|scss)$/,
-        use: [ 'style-loader','css-loader','sass-loader']
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
         test: /\.(jpg|png|svg|gif|jpeg)$/,
-        use: ['file-loader',],
+        use: ['file-loader'],
       },
       {
         test: /\.(js|ts)$/,
@@ -41,27 +41,26 @@ const settings = {
           loader: 'babel-loader',
           options: {
             presets: [
-              ['@babel/preset-env', 
+              [
+                '@babel/preset-env',
                 {
-                  useBuiltIns: 'usage', 
-                  corejs: '2.0.0'
-                }
+                  useBuiltIns: 'usage',
+                  corejs: '2.0.0',
+                },
               ],
-              "@babel/preset-typescript"
+              '@babel/preset-typescript',
             ],
-            plugins: [
-              "@babel/plugin-proposal-class-properties",
-            ]
-          }
-        }
+            plugins: ['@babel/plugin-proposal-class-properties'],
+          },
+        },
       },
-    ]
+    ],
   },
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      title: "Nowa Aplikacja",
-      template: 'source/templates/template.html'
+      title: 'Nowa Aplikacja',
+      template: 'source/templates/template.html',
     }),
     // new HtmlWebpackPlugin({
     //   title: "Nowa Podstrona",
@@ -73,9 +72,9 @@ const settings = {
     port: 5001,
     host: 'localhost',
     hot: true,
-    contentBase: path.resolve(__dirname,'../','public'),
-  }
-}
+    contentBase: path.resolve(__dirname, '../', 'public'),
+  },
+};
 
 //Export
 module.exports = settings;
